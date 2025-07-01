@@ -57,22 +57,22 @@ const Navbar = ({ className, onNoteAdded, query, setQuery,setClicked,clicked }) 
             })
     }
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_Server_URL}/pic`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        })
-            .then((result) => {
-                // console.log(result);
-                setimage(result.data.image);
-                // console.log(result.data.image);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        // console.log(image);
-    }, [file]);
+    // useEffect(() => {
+    //     axios.get(`${import.meta.env.VITE_Server_URL}/pic`, {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //         }
+    //     })
+    //         .then((result) => {
+    //             // console.log(result);
+    //             setimage(result.data.image);
+    //             // console.log(result.data.image);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    //     // console.log(image);
+    // }, [file]);
 
     return (
         <>
