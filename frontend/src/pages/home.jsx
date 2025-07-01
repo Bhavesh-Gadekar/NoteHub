@@ -29,7 +29,11 @@ const Home = () => {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_Server_URL}/home`)
+        axios.get(`${import.meta.env.VITE_Server_URL}/home`,{
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        })
             .then(result => {
                 if (result.data === 'Notoken') {
                     console.log("No Token Found !");
