@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 
 const picphoto=(req,res)=>{
     const token=req.headers['authorization']?.split(' ')[1];
+    // console.log(token,"this is from picphoto")
+    if (!token) return res.status(401).json({ message: 'Token missing' });
     const userdetail=jwt.verify(token,process.env.SECRET);
     // console.log(userdetail.id);
     PicModel.findOne({userId:userdetail.id})
