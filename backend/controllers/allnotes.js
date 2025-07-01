@@ -3,7 +3,8 @@ import NoteModel from "../models/NoteModel.js";
 
 const allnotes=(req,res)=>{
     // get token collect id and then search notes on based on that id
-    const token=req.headers['authorization']?.split(' ')[1];
+    const token = req.cookies.token;
+    // const token=req.headers['authorization']?.split(' ')[1];
     const user=jwt.verify(token,process.env.SECRET);
     // console.log(user.id);
     NoteModel.find({userId:user.id})

@@ -15,11 +15,7 @@ const Home = () => {
     const navigate=useNavigate();
 
     const fetchNotes=()=>{
-        axios.get(`${import.meta.env.VITE_Server_URL}/notes`,{
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        })
+        axios.get(`${import.meta.env.VITE_Server_URL}/notes`)
         .then((notes)=>{
             setNotes(notes.data);
             // console.log(notes.data);
