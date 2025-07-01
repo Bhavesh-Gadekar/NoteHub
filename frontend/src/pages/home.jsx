@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Body from "../components/body.jsx";
 
+axios.defaults.withCredentials=true;
 const Home = () => {
 
     const [Notes,setNotes]=useState([]);
@@ -29,17 +30,13 @@ const Home = () => {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_Server_URL}/home`,{
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        })
+        axios.get(`${import.meta.env.VITE_Server_URL}/home`)
             .then(result => {
                 if (result.data === 'Notoken') {
                     console.log("No Token Found !");
                     navigate('/login');
                 }
-                // console.log(result);
+                console.log(result);
             })
             .catch(err => {
                 console.log(err.message);

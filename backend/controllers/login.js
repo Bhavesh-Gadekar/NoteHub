@@ -18,7 +18,11 @@ const login=async (req,res)=>{
         }
         // console.log(user);
         const token=jwt.sign({id:user._id,firstname:user.firstname,email,},process.env.SECRET,{expiresIn:'1h'});
-        res.cookie("token",token);
+        res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,      // if using https
+  sameSite: "None"   // if frontend and backend are on different domains
+});
         res.json(user);
     }catch(err){
         console.log(err)
