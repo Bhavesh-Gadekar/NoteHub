@@ -1,7 +1,10 @@
 import axios from "axios";
+
 import {useNavigate} from "react-router-dom";
+import { useAuth } from "../context/contexProvider.jsx";
 
 const Logout=()=>{
+    const {setUser,setIsLoggedIn}=useAuth();
 
     const naviagte=useNavigate();
 
@@ -9,6 +12,8 @@ const Logout=()=>{
     const handleClick=()=>{
         axios.post(`${import.meta.env.VITE_Server_URL}/logout`)
         .then(()=>{
+            setUser(null);
+            setIsLoggedIn(false);
             console.log("logged-out Successfully !!")
             naviagte('/login');
     })

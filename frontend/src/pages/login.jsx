@@ -1,6 +1,7 @@
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios"
 import { useState } from "react";
+import { useAuth } from "../context/contexProvider";
 
 const Login=()=>{
     
@@ -9,7 +10,7 @@ const Login=()=>{
     const [message,setMessage]=useState('');
 
     const naviagte=useNavigate();
-
+    const {setIsLoggedIn}=useAuth();
     axios.defaults.withCredentials=true;
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -19,6 +20,7 @@ const Login=()=>{
         }
         axios.post(`${import.meta.env.VITE_Server_URL}/login`,{email,password})
         .then(result=>{
+            setIsLoggedIn(true);
             naviagte('/home');
         })
         .catch(err=>{

@@ -15,7 +15,7 @@ const Home = () => {
     const navigate=useNavigate();
 
     const fetchNotes=()=>{
-        console.log(token);
+        // console.log(token);
         axios.get(`${import.meta.env.VITE_Server_URL}/notes`,{
             headers:{
                 Authorization:`Bearer ${token}`
@@ -38,7 +38,7 @@ const Home = () => {
                     console.log("No Token Found !");
                     navigate('/login');
                 }
-                console.log(result);
+                // console.log(result);
             })
             .catch(err => {
                 console.log(err.message);
@@ -46,8 +46,6 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        // if (token) fetchNotes();
-        // console.log(token)
         fetchNotes();
     }, []);
 
