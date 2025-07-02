@@ -12,7 +12,7 @@ const picphoto=(req,res)=>{
     PicModel.findOne({userId:userdetail.id})
     .then(result=>{
         res.json(result);
-        // console.log(result);
+        console.log(result);
     })
     .catch(err=>{
         console.log(err.message);
