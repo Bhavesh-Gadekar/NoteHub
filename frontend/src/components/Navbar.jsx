@@ -67,7 +67,7 @@ const Navbar = ({ className, onNoteAdded, query, setQuery,setClicked,clicked }) 
             .then((result) => {
                 // console.log(result);
                 setimage(result.data.image);
-                // console.log(result.data.image);
+                console.log(result.data.image);
             })
             .catch(err => {
                 console.log(err);
