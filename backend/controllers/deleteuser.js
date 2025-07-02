@@ -8,7 +8,7 @@ const deleteuser = async (req, res) => {
     try {
         const token = req.cookies.token;
         // const token = req.headers['authorization']?.split(' ')[1];
-        console.log(token);
+        // console.log(token);
         const user = jwt.verify(token, process.env.SECRET);
 
         // Step 1: Find and delete all user's images
