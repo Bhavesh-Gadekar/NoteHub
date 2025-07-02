@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 
+axios.defaults.withCredentials=true;
 const Navbar = ({ className, onNoteAdded, query, setQuery,setClicked,clicked }) => {
 
     const { user } = useAuth();

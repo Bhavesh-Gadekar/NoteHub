@@ -15,12 +15,18 @@ const Home = () => {
     const navigate=useNavigate();
 
     const fetchNotes=()=>{
-        axios.get(`${import.meta.env.VITE_Server_URL}/notes`)
+        console.log(token);
+        axios.get(`${import.meta.env.VITE_Server_URL}/notes`,{
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        })
         .then((notes)=>{
             setNotes(notes.data);
             // console.log(notes.data);
         })
         .catch(err => {
+                // console.log("Problem Occured Here !")
                 console.log(err.message);
             })
     }
@@ -40,14 +46,16 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        if (token) fetchNotes();
-    }, [token]);
+        // if (token) fetchNotes();
+        // console.log(token)
+        fetchNotes();
+    }, []);
 
     return (
         <>
             <div className="z-50 w-full min-h-screen flex justify-center items-start bg-gradient-to-bl from-cyan-700 via-blue to-violet-500">
                 <div className="w-full min-h-screen flex flex-col justify-start items-center">
-                <Navbar className={"p-1"} setClicked={setClicked} clicked={clicked} onNoteAdded={fetchNotes} query={query} setQuery={setQuery}/>
+                <Navbar className={"p-1"} setClicked={setClicked} clicked={clicked} onNoteAdded={fetchNotes} query={query} setQuery={setQuery} token={token}/>
                 <Body className={""} setClicked={setClicked} Notes={Notes} query={query} onNoteDeleted={fetchNotes} onNoteUpdate={fetchNotes}/>
                 </div>
             </div>
