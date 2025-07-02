@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 
 const addnote=(req,res)=>{
     const {title,description}=req.body;
-    const token=req.headers['authorization']?.split(' ')[1];
+    const token = req.cookies.token;
+    // const token=req.headers['authorization']?.split(' ')[1];
     const userdetail=jwt.verify(token,process.env.SECRET);
     // console.log(userdetail);
     const user=NoteModel.create({title,description,userId:userdetail.id})
