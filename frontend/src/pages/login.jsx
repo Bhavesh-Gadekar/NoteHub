@@ -18,7 +18,7 @@ const Login=()=>{
             setMessage("fields cannot be empty !!");
             return console.log("fields cannot be empty !!");
         }
-        axios.post(`${import.meta.env.VITE_Server_URL}/login`,{email,password})
+        axios.post(`${import.meta.env.VITE_Server_URL}/login`,{email,password},{ withCredentials: true })
         .then(result=>{
             setIsLoggedIn(true);
             naviagte('/home');
@@ -32,7 +32,7 @@ const Login=()=>{
     return(
         <>
         <div className="w-full h-screen flex justify-center items-center bg-gradient-to-bl from-cyan-700 via-blue to-violet-500">
-            <div className="w-[40%] bg-white/10 backdrop-blur-lg rounded-xl ring-1 ring-white/50 shadow-xl">
+            <div className="w-[85%] sm:w-[60%] md:w-[40%] bg-white/10 backdrop-blur-lg rounded-xl ring-1 ring-white/50 shadow-xl">
                 <form onSubmit={handleSubmit} className="w-full h-full space-y-1 mb-3 rounded-xl flex flex-col justify-center items-center">
                     <h1 className="text-2xl my-1 mt-3">Login</h1>
                     <div className="w-full px-10">
