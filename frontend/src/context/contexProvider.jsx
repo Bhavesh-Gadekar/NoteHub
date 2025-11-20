@@ -10,7 +10,26 @@ const ContexProvider=({children})=>{
     const [isloggedin,setIsLoggedIn]=useState(false);
     const token=Cookie.get("token");
     // console.log(token)
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     
+    const checkAuth = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_Server_URL}/home`
+      );
+      setIsLoggedIn(true);
+    } catch (error) {
+      setIsLoggedIn(false);
+      setUser(null);
+    } finally {
+      setIsCheckingAuth(false);
+    }
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
     useEffect(()=>{
         if(isloggedin){
             axios.get(`${import.meta.env.VITE_Server_URL}/userdetail`,{
@@ -30,7 +49,7 @@ const ContexProvider=({children})=>{
     },[isloggedin]);
     
     return(
-        <authContext.Provider value={{user,setUser,setIsLoggedIn}}>{children}</authContext.Provider>
+        <authContext.Provider value={{user,setUser,setIsLoggedIn,isCheckingAuth}}>{children}</authContext.Provider>
     )
 }
 

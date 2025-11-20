@@ -6,12 +6,16 @@ import Home from "./pages/home.jsx";
 import Account from './pages/account.jsx';
 import Forgotpassword from './pages/forgotPassword.jsx';
 import ResetPassword from "./pages/resetPassword.jsx";
+import LoaderGate from './components/LoaderGate.jsx';
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+
 
 function App() {
 
   return (
     <>
     <BrowserRouter>
+    <LoaderGate>
     <Routes>
       <Route path='/' element={<Login/>}/>
       <Route path='/login' element={<Login/>}/>
@@ -21,6 +25,7 @@ function App() {
       <Route path='/forgotpassword' element={<Forgotpassword/>}/>
       <Route path='/resetpassword/:id/:token' element={<ResetPassword/>}/>
     </Routes>
+    </LoaderGate>
     </BrowserRouter>
     </>
   )
